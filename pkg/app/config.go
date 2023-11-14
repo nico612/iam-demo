@@ -2,14 +2,15 @@ package app
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
+	"strings"
+
 	"github.com/gosuri/uitable"
 	"github.com/marmotedu/component-base/pkg/util/homedir"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
-	"os"
-	"path/filepath"
-	"strings"
 )
 
 const configFlagName = "config"

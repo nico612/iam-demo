@@ -1,6 +1,15 @@
 
 GO := go
 
+GO_SUPPORTED_VERSIONS ?= 1.13|1.14|1.15|1.16|1.17|1.18|1.19|1.20
+GO_LDFLAGS += -X $(VERSION_PACKAGE).GitVersion=$(VERSION) \
+	-X $(VERSION_PACKAGE).GitCommit=$(GIT_COMMIT) \
+	-X $(VERSION_PACKAGE).GitTreeState=$(GIT_TREE_STATE) \
+	-X $(VERSION_PACKAGE).BuildDate=$(shell date -u +'%Y-%m-%dT%H:%M:%SZ')
+ifneq ($(DLV),)
+	GO_BUILD_FLAGS += -gcflags "all=-N -l"
+	LDFLAGS = ""
+endif
 GO_BUILD_FLAGS += -ldflags "$(GO_LDFLAGS)"
 
 ifeq ($(GOOS),windows)
@@ -42,7 +51,7 @@ go.build.%:
 	$(eval ARCH := $(word 2,$(subst _, ,$(PLATFORM))))
 	@echo "===========> Building binary $(COMMAND) $(VERSION) for $(OS) $(ARCH)"
 	@mkdir -p $(OUTPUT_DIR)/platforms/$(OS)/$(ARCH)
-	@CGO_ENABLED=0 GOOS=$(OS) GOARCH=$(ARCH) $(GO) build $(GO_BUILD_FLAGS) -o $(OUTPUT_DIR)/platforms/$(OS)/$(ARCH)/$(COMMAND)$(GO_OUT_EXT) $(ROOT_DIR)/cmd/$(COMMAND)
+	@CGO_ENABLED=0 GOOS=$(OS) GOARCH=$(ARCH) $(GO) build $(GO_BUILD_FLAGS) -o $(OUTPUT_DIR)/platforms/$(OS)/$(ARCH)/$(COMMAND)$(GO_OUT_EXT) $(ROOT_PACKAGE)/cmd/$(COMMAND)
 
 .PHONY: go.build
 # 根据指定的平台编译源码. 该指令依赖 go.build.verify 和 go.build.% 两个指令

@@ -1,8 +1,9 @@
 package logger
 
 import (
-	gormlogger "gorm.io/gorm/logger"
 	"time"
+
+	gormlogger "gorm.io/gorm/logger"
 )
 
 // Define colors.

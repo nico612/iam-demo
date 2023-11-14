@@ -22,9 +22,10 @@ package log
 import (
 	"context"
 	"fmt"
-	"github.com/nico612/iam-demo/pkg/log/klog"
 	"log"
 	"sync"
+
+	"github.com/nico612/iam-demo/pkg/log/klog"
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"

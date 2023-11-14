@@ -2,10 +2,11 @@ package options
 
 import (
 	"fmt"
-	"github.com/nico612/iam-demo/internal/pkg/server"
-	"github.com/spf13/pflag"
 	"net"
 	"strconv"
+
+	"github.com/nico612/iam-demo/internal/pkg/server"
+	"github.com/spf13/pflag"
 )
 
 // InsecureServingOptions are for creating an unauthenticated, unauthorized, insecure port.

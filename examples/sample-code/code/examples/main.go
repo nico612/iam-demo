@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/marmotedu/errors"
 	"github.com/nico612/iam-demo/examples/sample-code/code"
 )

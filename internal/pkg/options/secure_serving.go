@@ -2,10 +2,11 @@ package options
 
 import (
 	"fmt"
-	"github.com/nico612/iam-demo/internal/pkg/server"
-	"github.com/spf13/pflag"
 	"net"
 	"path"
+
+	"github.com/nico612/iam-demo/internal/pkg/server"
+	"github.com/spf13/pflag"
 )
 
 // SecureServingOptions contains configuration items related to HTTPS server startup.

@@ -5,8 +5,9 @@ import (
 	"crypto/x509"
 	"encoding/pem"
 	"fmt"
-	"github.com/spf13/pflag"
 	"io/ioutil"
+
+	"github.com/spf13/pflag"
 )
 
 // EtcdOptions defines options for etcd cluster.

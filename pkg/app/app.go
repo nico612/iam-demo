@@ -2,6 +2,8 @@ package app
 
 import (
 	"fmt"
+	"os"
+
 	"github.com/fatih/color"
 	cliflag "github.com/marmotedu/component-base/pkg/cli/flag"
 	"github.com/marmotedu/component-base/pkg/cli/globalflag"
@@ -12,7 +14,6 @@ import (
 	"github.com/nico612/iam-demo/pkg/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"os"
 )
 
 var (

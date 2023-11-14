@@ -20,9 +20,10 @@
 package logrus
 
 import (
+	"io"
+
 	"github.com/sirupsen/logrus"
 	"go.uber.org/zap"
-	"io"
 )
 
 // NewLogger create a logrus logger, add hook to it and return it.

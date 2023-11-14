@@ -7,8 +7,8 @@ import (
 
 // ServerRunOptions Restful 服务配置
 type ServerRunOptions struct {
-	Mode        string   `json:"mode" mapstructure:"mode"`
-	Healthz     bool     `json:"healthz" mapstructure:"healthz"`
+	Mode        string   `json:"mode"        mapstructure:"mode"`
+	Healthz     bool     `json:"healthz"     mapstructure:"healthz"`
 	Middlewares []string `json:"middlewares" mapstructure:"middlewares"`
 }
 

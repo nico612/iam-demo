@@ -4,7 +4,7 @@
 .PHONY: all
 all: tidy gen
 
-ROOT_PACKAGE=github.com/nico/iam-demo
+ROOT_PACKAGE=github.com/nico612/iam-demo
 
 VERSION_PACKAGE=github.com/marmotedu/component-base/pkg/version
 
@@ -43,7 +43,7 @@ export USAGE_OPTIONS
 
 ## build: Build source code for host platform.
 .PHONY: build
-build:
+build: tidy
 	@$(MAKE) go.build
 
 ## build.multiarch: Build source code for multiple platforms. See option PLATFORMS.

@@ -2,11 +2,12 @@ package app
 
 import (
 	"fmt"
-	"github.com/fatih/color"
-	"github.com/spf13/cobra"
 	"os"
 	"runtime"
 	"strings"
+
+	"github.com/fatih/color"
+	"github.com/spf13/cobra"
 )
 
 // Command is a sub command structure of a cli application.

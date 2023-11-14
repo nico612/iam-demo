@@ -2,6 +2,7 @@ package options
 
 import (
 	"encoding/json"
+
 	cliflag "github.com/marmotedu/component-base/pkg/cli/flag"
 	"github.com/marmotedu/component-base/pkg/util/idutil"
 	genericoptions "github.com/nico612/iam-demo/internal/pkg/options"

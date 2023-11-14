@@ -1,10 +1,11 @@
 package options
 
 import (
+	"time"
+
 	"github.com/nico612/iam-demo/pkg/db"
 	"github.com/spf13/pflag"
 	"gorm.io/gorm"
-	"time"
 )
 
 // MySQLOptions defines options for mysql database.

@@ -2,10 +2,11 @@ package options
 
 import (
 	"fmt"
+	"time"
+
 	"github.com/asaskevich/govalidator"
 	"github.com/nico612/iam-demo/internal/pkg/server"
 	"github.com/spf13/pflag"
-	"time"
 )
 
 // JwtOptions contains configuration items related to API server features.
