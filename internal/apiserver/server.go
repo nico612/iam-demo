@@ -114,6 +114,17 @@ func (s *apiServer) PrepareRun() preparedAPIServer {
 
 }
 
+func (s preparedAPIServer) Run() error {
+
+	go s.gRPCAPIServer.Run()
+
+	if err := s.gs.Start(); err != nil {
+		log.Fatalf("start shutdown manager failed: %s", err.Error())
+	}
+
+	return s.genericapiserver.Run()
+}
+
 // New create a grpcAPIServer instance.
 func (c *completedExtraConfig) New() (*grpcAPIServer, error) {
 	creds, err := credentials.NewServerTLSFromFile(c.ServerCert.CertKey.CertFile, c.ServerCert.CertKey.KeyFile)

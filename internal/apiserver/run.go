@@ -12,6 +12,5 @@ func Run(cfg *config.Config) error {
 	}
 
 	// 应用初始化 => 启动服务
-
-	return nil
+	return server.PrepareRun().Run()
 }
