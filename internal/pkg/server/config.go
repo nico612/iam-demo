@@ -1,8 +1,13 @@
 package server
 
 import (
+	"github.com/marmotedu/component-base/pkg/util/homedir"
+	"github.com/nico612/iam-demo/pkg/log"
+	"github.com/spf13/viper"
 	"net"
+	"path/filepath"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -90,5 +95,46 @@ type CompletedConfig struct {
 // Complete fills in any fields not set that are required to have valid data and can be derived
 // from other fields. If you're going to `ApplyOptions`, do that first. It's mutating the receiver.
 func (c *Config) Complete() CompletedConfig {
-	return CompletedConfig{c}
+	return CompletedConfig{c} // 应用配置补全
+}
+
+// New returns a new instance of GenericAPIServer from the given config.
+func (c CompletedConfig) New() (*GenericAPIServer, error) {
+	gin.SetMode(c.Mode)
+	s := &GenericAPIServer{
+		middlewares:         c.Middlewares,
+		SecureServingInfo:   c.SecureServing,
+		InsecureServingInfo: c.InsecureServing,
+		Engine:              gin.New(),
+		healthz:             c.Healthz,
+		enableMetrics:       c.EnableMetrics,
+		enableProfiling:     c.EnableProfiling,
+	}
+
+	initGenericAPIServer(s)
+
+	return s, nil
+}
+
+// LoadConfig reads in config file and ENV variables if set.
+func LoadConfig(cfg string, defaultName string) {
+	if cfg != "" {
+		viper.SetConfigFile(cfg)
+	} else {
+		viper.AddConfigPath(".")
+		viper.AddConfigPath(filepath.Join(homedir.HomeDir(), RecommendedHomeDir))
+		viper.AddConfigPath("/etc/iam")
+		viper.SetConfigName(defaultName)
+	}
+
+	// Use config file from the flag.
+	viper.SetConfigType("yaml")              // set the type of the configuration to yaml.
+	viper.AutomaticEnv()                     // read in environment variables that match.
+	viper.SetEnvPrefix(RecommendedEnvPrefix) // set ENVIRONMENT variables prefix to IAM.
+	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_", "-", "_"))
+
+	// If a config file is found, read it in.
+	if err := viper.ReadInConfig(); err != nil {
+		log.Warnf("WARNING: viper failed to discover and load the configuration file: %s", err.Error())
+	}
 }

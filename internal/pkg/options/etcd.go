@@ -5,7 +5,7 @@ import (
 	"crypto/x509"
 	"encoding/pem"
 	"fmt"
-	"io/ioutil"
+	"os"
 
 	"github.com/spf13/pflag"
 )
@@ -95,7 +95,7 @@ func (o *EtcdOptions) GetEtcdTLSConfig() (*tls.Config, error) {
 		o.UseTLS = true
 	}
 	if o.CaCert != "" {
-		data, err := ioutil.ReadFile(o.CaCert)
+		data, err := os.ReadFile(o.CaCert)
 		if err != nil {
 			return nil, err
 		}

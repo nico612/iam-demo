@@ -1,12 +1,17 @@
 package apiserver
 
 import (
-	"fmt"
-
 	"github.com/nico612/iam-demo/internal/apiserver/config"
 )
 
 func Run(cfg *config.Config) error {
-	fmt.Printf("config = %v", *cfg)
+	// 根据应用配置创建 API Server 服务实例
+	server, err := createAPIServer(cfg)
+	if err != nil {
+		return err
+	}
+
+	// 应用初始化 => 启动服务
+
 	return nil
 }
