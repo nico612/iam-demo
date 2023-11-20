@@ -5,11 +5,10 @@
 package posixsignal
 
 import (
+	"github.com/nico612/iam-demo/pkg/shutdown"
 	"syscall"
 	"testing"
 	"time"
-
-	"github.com/marmotedu/iam/pkg/shutdown"
 )
 
 type startShutdownFunc func(sm shutdown.ShutdownManager)

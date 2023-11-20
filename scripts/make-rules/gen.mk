@@ -26,6 +26,18 @@ gen.errcode.doc: tools.verify.codegen
 		-output ${ROOT_DIR}/docs/guide/zh-CN/api/error_code_generated.md ${ROOT_DIR}/internal/pkg/code
 
 
+.PHONY: gen.ca.%
+gen.ca.%:
+	$(eval CA := $(word 1,$(subst ., ,$*)))
+	@echo "===========> Generating CA files for $(CA)"
+	@${ROOT_DIR}/scripts/gencerts.sh generate-iam-cert $(OUTPUT_DIR)/cert $(CA)
+
+
+
+.PHONY: gen.ca
+gen.ca: $(addprefix gen.ca., $(CERTIFICATES))
+
+
 .PHONY: gen.docgo.doc
 gen.docgo.doc:
 	@echo "===========> Generating missing doc.go for go packages"

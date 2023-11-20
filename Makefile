@@ -46,6 +46,12 @@ export USAGE_OPTIONS
 build: tidy
 	@$(MAKE) go.build
 
+## ca: Generate CA files for all iam components.
+.PHONY: ca
+ca:
+	@$(MAKE) gen.ca
+
+
 ## build.multiarch: Build source code for multiple platforms. See option PLATFORMS.
 .PHONY: build.multiarch
 build.multiarch:

@@ -8,6 +8,7 @@ import (
 	"context"
 	"crypto/tls"
 	"fmt"
+	"github.com/nico612/iam-demo/pkg/log"
 	"strconv"
 	"strings"
 	"sync/atomic"
@@ -17,8 +18,6 @@ import (
 	"github.com/marmotedu/errors"
 	uuid "github.com/satori/go.uuid"
 	"github.com/spf13/viper"
-
-	"github.com/marmotedu/iam/pkg/log"
 )
 
 // Config defines options for redis cluster.
@@ -919,11 +918,13 @@ func (r *RedisCluster) StartPubSubHandler(channel string, callback func(interfac
 	return nil
 }
 
-// Publish publish a message to the specify channel.
+// Publish a message to the specify redis channel.
 func (r *RedisCluster) Publish(channel, message string) error {
 	if err := r.up(); err != nil {
 		return err
 	}
+
+	// 发送消息到 指定的 redis 通道中
 	err := r.singleton().Publish(channel, message).Err()
 	if err != nil {
 		log.Errorf("Error trying to set value: %s", err.Error())
