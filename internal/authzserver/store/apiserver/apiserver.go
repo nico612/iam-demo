@@ -50,7 +50,7 @@ func GetAPIServerFactoryOrDie(address string, clientCA string) store.Factory {
 	})
 
 	if apiServerFactory == nil {
-		log.Panicf("failed to get apiserver store fatory")
+		log.Panicf("failed to get apiserver storage fatory")
 	}
 
 	return apiServerFactory

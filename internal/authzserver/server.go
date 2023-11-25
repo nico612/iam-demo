@@ -149,9 +149,11 @@ func (s *authzServer) initialize() error {
 	// 初始化 load 并开启 订阅 redis 服务, 当有缓存需要更新时执行更新本地缓存
 	load.NewLoader(ctx, cacheIns).Start()
 
-	// start analytics service, 并将分析日志写入redis中
+	// 日志上报功能， start analytics service, 并将分析日志写入redis中
 	if s.analyticsOptions.Enable {
 		analyticsStore := storage.RedisCluster{KeyPrefix: RedisKeyPrefix}
+
+		// 创建数据上报服务
 		analyticsIns := analytics.NewAnalytics(s.analyticsOptions, &analyticsStore)
 		analyticsIns.Start()
 	}

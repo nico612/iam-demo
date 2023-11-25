@@ -518,7 +518,7 @@ func (r *RedisCluster) SetExp(keyName string, timeout time.Duration) error {
 	return err
 }
 
-// SetKey will create (or update) a key value in the store.
+// SetKey will create (or update) a key value in the storage.
 func (r *RedisCluster) SetKey(keyName, session string, timeout time.Duration) error {
 	log.Debugf("[STORE] SET Raw key is: %s", keyName)
 	log.Debugf("[STORE] Setting key: %s", r.fixKey(keyName))

@@ -4,6 +4,7 @@ type Factory interface {
 	Users() UserStore
 	Secrets() SecretStore
 	Policies() PolicyStore
+	PolicyAudits() PolicyAuditStore
 	Close() error
 }
 

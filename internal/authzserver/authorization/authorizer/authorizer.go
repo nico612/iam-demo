@@ -26,31 +26,31 @@ func NewAuthorization(getter PolicyGetter) authorization.AuthorizationInterface 
 }
 
 // Create create a policy.
-// Return nil because we use mysql storage to store the policy.
+// Return nil because we use mysql storage to storage the policy.
 func (auth *Authorization) Create(policy *ladon.DefaultPolicy) error {
 	return nil
 }
 
 // Update update a policy.
-// Return nil because we use mysql storage to store the policy.
+// Return nil because we use mysql storage to storage the policy.
 func (auth *Authorization) Update(policy *ladon.DefaultPolicy) error {
 	return nil
 }
 
 // Delete delete a policy by the given identifier.
-// Return nil because we use mysql storage to store the policy.
+// Return nil because we use mysql storage to storage the policy.
 func (auth *Authorization) Delete(id string) error {
 	return nil
 }
 
 // DeleteCollection batch delete policies by the given identifiers.
-// Return nil because we use mysql storage to store the policy.
+// Return nil because we use mysql storage to storage the policy.
 func (auth *Authorization) DeleteCollection(idList []string) error {
 	return nil
 }
 
 // Get returns the policy detail by the given identifier.
-// Return nil because we use mysql storage to store the policy.
+// Return nil because we use mysql storage to storage the policy.
 func (auth *Authorization) Get(id string) (*ladon.DefaultPolicy, error) {
 	return &ladon.DefaultPolicy{}, nil
 }

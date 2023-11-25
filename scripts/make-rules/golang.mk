@@ -91,7 +91,7 @@ go.test:
 	@mkdir -p $(OUTPUT_DIR)
 	@set -o pipefail;$(GO) test -race -cover -coverprofile=$(OUTPUT_DIR)/coverage.out -timeout=10m -shuffle=on -short -v `go list ./...`
 	@sed -i '/mock_.*.go/d' $(OUTPUT_DIR)/coverage.out # 从 coverage 中删除mock_.*.go 文件
-	@sed -i '/internal\/miniblog\/store\/.*.go/d' $(OUTPUT_DIR)/coverage.out # internal/miniblog/store/ 下的 Go 代码不参与覆盖率计算（这部分测试用例稍后补上）
+	@sed -i '/internal\/miniblog\/store\/.*.go/d' $(OUTPUT_DIR)/coverage.out # internal/miniblog/storage/ 下的 Go 代码不参与覆盖率计算（这部分测试用例稍后补上）
 
 
 

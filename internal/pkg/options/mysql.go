@@ -68,7 +68,7 @@ func (o *MySQLOptions) AddFlags(fs *pflag.FlagSet) {
 		"Specify gorm log level.")
 }
 
-// NewClient create mysql store with the given config.
+// NewClient create mysql storage with the given config.
 func (o *MySQLOptions) NewClient() (*gorm.DB, error) {
 	opts := &db.Options{
 		Host:                  o.Host,

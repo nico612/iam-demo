@@ -5,7 +5,7 @@ import (
 	"github.com/ory/ladon"
 )
 
-// PolicyManager is a mysql implementation for Manager to store
+// PolicyManager is a mysql implementation for Manager to storage
 // policies persistently.
 type PolicyManager struct {
 	client AuthorizationInterface

@@ -21,6 +21,11 @@ type datastore struct {
 	// db *gorm.DB
 }
 
+func (ds *datastore) PolicyAudits() store.PolicyAuditStore {
+
+	return newPolicyAudits(ds)
+}
+
 var _ store.Factory = &datastore{}
 
 func (ds *datastore) Users() store.UserStore {
@@ -52,7 +57,7 @@ var (
 
 func GetMySQLFactoryOr(opts *options.MySQLOptions) (store.Factory, error) {
 	if opts == nil && mysqlFactory == nil {
-		return nil, fmt.Errorf("failed to get mysql store factory")
+		return nil, fmt.Errorf("failed to get mysql storage factory")
 	}
 
 	var err error
@@ -80,7 +85,7 @@ func GetMySQLFactoryOr(opts *options.MySQLOptions) (store.Factory, error) {
 	})
 
 	if mysqlFactory == nil || err != nil {
-		return nil, fmt.Errorf("failed to get mysql store fatory, mysqlFactory: %+v, error: %w", mysqlFactory, err)
+		return nil, fmt.Errorf("failed to get mysql storage fatory, mysqlFactory: %+v, error: %w", mysqlFactory, err)
 	}
 
 	return mysqlFactory, nil
